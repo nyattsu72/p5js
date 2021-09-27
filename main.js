@@ -1,25 +1,42 @@
-let locationX = 0;
-let velocityX = 30;
+let locationX, locationY;
+let velocityX, velocityY;
+let accelX, gravity;
 
 function setup() {
-	frameRate(10);
+	// frameRate(10);
+	// frameRate(10);
 	createCanvas(500, 300);
 	colorMode(HSB);
+	locationX = width / 2;
+	locationY = height / 2;
+	velocityX = 10;
+	velocityY = 10;
+	accelX = -1;
+	gravity = 0.1;
 }
 
 function draw() {
-	// background('#fff');
+	background('#fff');
 	noStroke();
-	fill(random(160, 200), 100, 100, 0.3);
-	ellipse(random(0, width), random(0, height), 80, 80);
+	fill(200, 100, 100, 1);
+	ellipse(locationX, locationY, 80, 80);
 
-	// let randomTest = random(180, 10);
-	// console.log(randomTest);
+	// velocityX += accelX;
+	// locationX += velocityX;
 
-	locationX += velocityX;
-	// console.log(locationX);
+	velocityY += gravity;
+	locationY += velocityY;
 
-	if (locationX > 400) {
-		locationX = 0;
+	// if (locationX > width) {
+	// 	locationX = 0;
+	// }
+
+	// if (locationX > width || locationX < 0) {
+	// 	velocityX = velocityX * -1;
+	// }
+	if (locationY > height || locationY < 0) {
+		velocityY = velocityY * -1;
 	}
+
+	console.log('位置', locationY, '速度', velocityY, '加速度', gravity);
 }
